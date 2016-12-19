@@ -47,6 +47,7 @@ defmodule AppsignalErrorHandlerTest do
   end
 
   test_with_mock "submitting the transaction", Appsignal.Transaction, [:passthrough], [] do
+    :erlang.system_flag(:backtrace_depth, 100)
     transaction = Transaction.start("id", :http_request)
     reason = "ArithmeticError"
     message = "bad argument in arithmetic expression"
